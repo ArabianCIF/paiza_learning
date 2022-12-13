@@ -1,0 +1,41 @@
+def print_map(xawe):
+    for i in range(len(xawe)):
+        print(xawe[i])
+reserved_seat_num,seat_length,seat_wide,best_seat_y,best_seat_x = list(map(int,input().split()))
+#reserved_seat_num,seat_length,seat_wide,best_seat_y,best_seat_x =9,4,5,2,3
+better_location = seat_wide + seat_length
+#make seat_map
+seat_map = []
+for i in range(seat_length):
+    seat_map.insert(i,[0]*seat_wide)
+while reserved_seat_num > 0:
+    reserved_seat_num -= 1
+    reserved_seat_y,reserved_seat_x = list(map(int,input().split()))
+    seat_map[reserved_seat_y][reserved_seat_x] = 1
+#make distance of manhattan map
+distance_map = []
+for i in range(seat_length):
+    distance_map.insert(i,[0]*seat_wide)
+for y in range(seat_length):
+    for x in range(seat_wide):
+        if seat_map[y][x] == 1:
+            distance_map[y][x] = better_location
+        else:
+            distance_map[y][x] = abs(y-best_seat_y)+abs(x-best_seat_x) # manhattan distance
+#better seat
+distance_set = []
+for y in range(seat_length):
+    for x in range(seat_wide):
+        if distance_map[y][x] <= better_location:
+            distance_set.insert(1,[distance_map[y][x],y,x])
+            better_location = distance_map[y][x]
+#show result
+result = []
+for i in range(len(distance_set)):
+    if distance_set[i][0] == better_location:
+        result.append([distance_set[i][1],distance_set[i][2]])
+
+result.sort()
+for i in range(len(result)):
+    print(result[i][0],end=" ")
+    print(result[i][1])
