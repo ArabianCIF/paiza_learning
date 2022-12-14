@@ -1,0 +1,18 @@
+field_y,field_x = list(map(int,input().split()))
+field_map = []
+for i in range(field_y):
+    field_map.insert(0, [0]*field_x)
+#make map
+current_map = []
+for y in range(field_y):
+    current_map = list(input())
+    for x in range(field_x):
+        if current_map[x] == '#':
+            for y1 in range(field_y):
+                field_map[y1][x] = 1
+            for x1 in range(field_x):
+                field_map[y][x1] = 1
+bombed_area = 0
+for i in range(field_y):
+    bombed_area += sum(field_map[i])
+print(bombed_area)
