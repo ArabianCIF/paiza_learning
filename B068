@@ -1,0 +1,28 @@
+def dist_check(choco_list,list_x):
+    def_dist = 1
+    fake_list = []
+    for i in range(list_x):
+        if sum(choco_list[:i]) == sum(choco_list[i:]):
+            def_dist = 0
+            fake_list = [['B']*list_x]
+            fake_list[0][:i] = [['A']*(i)][0]
+            break
+    return fake_list,def_dist
+            
+choco_y,choco_x = list(map(int,input().split()))
+choco_map = []
+for y in range(choco_y):
+    choco_map.append(list(map(int,input().split())))
+result_list = ['']*choco_y
+dist = [0]*choco_y
+for i in range(choco_y):
+    result_list[i],dist[i] = dist_check(choco_map[i],choco_x)
+if sum(dist) == 0:
+    print('Yes')
+    for y in range(choco_y):
+        for x in range(choco_x-1):
+            print(result_list[y][0][x],end="")
+        print(result_list[y][0][choco_x-1])
+else:
+    print('No')
+    
