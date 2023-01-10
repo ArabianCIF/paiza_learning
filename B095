@@ -11,27 +11,26 @@ def score_judge(a,b):
     else:
         scored = -5
     return scored
-        
-    
+
 people_num,song_long = list(map(int,input().split()))
-Sing_data = []
 score_data = []
-#get song and score data
+song_data = []
+#get Song data
 for i in range(song_long):
-    Song_data.append(int(input()))
+    song_data.append(int(input()))
+#get score_data
 for i in range(people_num):
-    score_data.append([score_judge(Song_data[0],int(input()))])
+    score_data.append([score_judge(song_data[0],int(input()))])
     for x in range(1,song_long):
-        score_data[i].append(score_judge(Song_data[x],int(input())))
+        score_data[i].append(score_judge(song_data[x],int(input())))
 
 for i in range(people_num):
-    score[i] = 100 + sum(score_data[i])
-
-
+    score_data[i] = 100 + sum(score_data[i])
 best = 0
 for i in range(people_num):
     if score_data[i] >= best:
         best = score_data[i]
 
 print(best)
-    
+
+
