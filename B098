@@ -1,0 +1,22 @@
+say_num,observe_long,buzz_long,need_good = list(map(int,input().split()))
+data_map = []
+for i in range(observe_long):
+    data_map.append(list(map(int,input().split())))
+data_map = [[data_map[x][y] for x in range(observe_long)]for y in range(say_num)]
+for user in range(say_num):
+    for i in range(observe_long-buzz_long+1):
+        good_num = 0
+        for time in range(buzz_long):
+            good_num += data_map[user][i+time]
+            if good_num >= need_good:
+                data_map[user] = ['yes',i+time+1]
+                break
+        if data_map[user][0] == 'yes':
+            break
+
+for user in range(say_num):
+    if data_map[user][0] == 'yes':
+        print(data_map[user][0],end=" ")
+        print(data_map[user][1])
+    else:print("no 0")
+            
