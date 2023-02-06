@@ -1,0 +1,13 @@
+replace_num,key_word = list(input().split())
+replace_num = int(replace_num)
+key_list = {}
+alphabet = "abcdefghijklmnopqrstuvwxyz"
+replaced_word = list(input())
+len_num = len(replaced_word)
+for i in range(26):
+    key_list[key_word[i]] = alphabet[i]
+key_list[" "] = " "
+for i in range(replace_num):
+    for n in range(len_num):
+        replaced_word[n] = key_list[replaced_word[n]] 
+print("".join(replaced_word))
